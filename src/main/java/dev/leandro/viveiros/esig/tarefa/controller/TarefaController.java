@@ -57,7 +57,7 @@ public class TarefaController implements Serializable {
     }
 
     public Boolean hasTarefas() {
-        return tarefas.size() > 0;
+        return !tarefas.isEmpty();
     }
 
     public void toggleDoneFilter() {
