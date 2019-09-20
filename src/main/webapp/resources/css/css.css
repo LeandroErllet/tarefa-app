@@ -1,0 +1,374 @@
+a,
+a:focus,
+a:hover {
+    color: #fff;
+    outline: none;
+}
+html,
+body {
+    height: 100%;
+    background: url(wallpaper.jpg) no-repeat;
+    background-size: auto;
+}
+
+body {
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -ms-flex-pack: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    color: #fff;
+    min-width: 520px;
+}
+.head {
+    margin-bottom: 2rem;
+}
+
+.head-brand {
+    margin-bottom: 0;
+}
+
+.nav-head .nav-link {
+    padding: .25rem 0;
+    font-weight: 700;
+    color: rgba(255, 255, 255, .5);
+    background-color: transparent;
+    border-bottom: .25rem solid transparent;
+}
+
+.nav-head .nav-link:hover,
+.nav-head .nav-link:focus {
+    border-bottom-color: rgba(255, 255, 255, .25);
+}
+
+.nav-head .nav-link + .nav-link {
+    margin-left: 1rem;
+}
+
+.nav-head .active {
+    color: #fff;
+    border-bottom-color: #fff;
+}
+
+@media (min-width: 48em) {
+    .head-brand {
+        float: left;
+    }
+
+    .nav-head {
+        float: right;
+    }
+}
+
+ul {
+    width: 100%;
+    padding: 0 !important;
+    margin: 0;
+}
+
+.zeroSize {
+    visibility: hidden;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    width: 0;
+    height: 0;
+}
+
+#tarefaForm {
+    width: 520px;
+}
+
+.ui-datalist {
+    text-align: left;
+}
+
+.ui-datalist-item {
+    text-shadow: none;
+}
+
+
+.tarefa-edit {
+    border: none !important;
+    border-radius: 0;
+    outline: none;
+    padding: 15px 15px 15px 20px;
+    font-size: 21px;
+    width: 100%;
+    background: #ededed;
+}
+
+.tarefa-item .input-group-prepend {
+    margin-right: 0;
+}
+
+.tarefa-edit {
+    padding: 15px 15px 15px 20px;
+    width: 100%;
+    height: 70px;
+    left: 0;
+    right: 0;
+}
+
+.tarefa-item .tarefa-status:checked ~ .tarefa-content {
+    color: rgba(0, 0, 0, 0.2);
+    text-decoration: line-through;
+}
+
+.tarefa-edit:focus {
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+#tarefaForm {
+    background: #ededed;
+}
+
+.tarefa-add, .tarefa-save, .edit-cancel {
+    border: none !important;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 21px;
+    line-height: 40px;
+    width: 60px
+}
+
+.check-all {
+    background-color: transparent;
+    width: 40px;
+    transition: all .2s;
+}
+
+.check-all .material-icons {
+    color: rgba(0, 0, 0, 0.2);
+}
+
+.check-all.active .material-icons {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.edit-cancel {
+    background-color: darkorange !important;
+    width: 40px;
+}
+
+.tarefa-save {
+    background-color: limegreen !important;
+}
+
+.tarefa-item {
+    position: relative;
+    font-size: 21px;
+    color: rgba(0, 0, 0, 0.8);
+    border-bottom: 1px #eee solid;
+}
+
+.ui-datalist-item:first-child .tarefa-item {
+    border-top: 1px #ddd solid;
+}
+
+.tarefa-item .tarefa-status {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    border: none;
+    height: 40px;
+    width: 40px;
+    opacity: 0;
+    outline: none;
+}
+
+.ui-datalist-empty-message {
+    display: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ui-datalist-content {
+    border: none;
+}
+
+.ui-datalist-footer {
+    border-radius: 0;
+    padding: 0 !important;
+    border: none !important;
+}
+
+.ui-datalist-header {
+    border-radius: 0;
+    padding: 0 !important;
+    border: 0 !important;
+}
+
+.tarefa-item .tarefa-content {
+    width: 520px;
+    word-break: break-word;
+    padding: 15px 75px 15px 60px;
+    line-height: 40px;
+    margin: 0;
+    transition: .2s;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.tarefa-item .remove {
+    border: none !important;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 21px;
+    line-height: 40px;
+    background-color: #c82333 !important;
+    width: 60px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+}
+
+li:hover .remove {
+    display: block;
+}
+
+.input-group {
+    flex-wrap: nowrap;
+}
+
+.toolbar .tarefa-count {
+    text-align: left;
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 22px;
+    float: left;
+    padding: 4px 10px;
+}
+
+.toolbar .dropdown {
+    float: right;
+}
+
+.toolbar .dropdown-toggle {
+    height: 30px;
+    background: #777777;
+    width: 60px;
+    border-radius: 0;
+    color: #fff;
+}
+
+.toolbar .dropdown-toggle:focus {
+    box-shadow: none;
+}
+
+.toolbar .dropdown-toggle:hover {
+    filter: brightness(80%);
+}
+
+.toolbar .dropdown-toggle::after {
+    margin-left: 0;
+    vertical-align: .4em;
+}
+
+.toolbar .dropdown-menu {
+    border-radius: 0;
+}
+
+.empty-list {
+    background: #fff;
+    color: rgba(0,0,0,0.55)
+}
+
+.empty-list .material-icons {
+    font-size: 70px;
+    padding-top: 20px;
+}
+
+.no-tarefa {
+    padding: 15px 15px 15px 15px;
+    display: block;
+    line-height: 40px;
+}
+
+main {
+    margin-top: 60px;
+    margin-bottom: 30px;
+}
+.main {
+    padding: 0 1.5rem;
+    width: 100%;
+}
+.foot {
+    color: rgba(255, 255, 255, .5);
+}
+.checkbox, input[type="checkbox"] {
+    cursor: pointer;
+}
+
+.checkbox span {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    transition-duration: 0.3s;
+}
+
+.checkbox .box {
+    border: 2px solid #ccc;
+    height: 20px;
+    width: 20px;
+    left: 10px;
+    margin: auto;
+    z-index: 888;
+    transition-delay: 0.2s;
+    transition: .2s;
+}
+
+.checkbox .check {
+    margin: auto;
+    top: -8px;
+    width: 12px;
+    left: 14px;
+    height: 24px;
+    border: 2px solid #0f9d58;
+    border-top: none;
+    border-left: none;
+    z-index: 888;
+    opacity: 0;
+    transition-delay: .2s;
+    transition: .3s;
+}
+
+.tarefa-item .tarefa-status:checked ~ .checkbox .box {
+    border: 2px solid #eee;
+}
+
+.tarefa-item .tarefa-status:checked ~ .checkbox .check {
+    opacity: 1;
+    transform: rotate(45deg);
+}
+a .material-icons {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #fff;
+    transform: translate(-50%, -50%);
+}
+
+a.btn {
+    transition: .2s;
+    box-shadow: none !important;
+}
+
+a.btn:hover {
+    filter: brightness(80%);
+}
+
+a.btn:hover .material-icons {
+    filter: brightness(100%);
+}

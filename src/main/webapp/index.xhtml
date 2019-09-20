@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes"/>
+    <meta name="description" content="Aplicativo de Tarefas"/>
+    <meta name="author" content="Leandro Viveiros"/>
+    <meta name="theme-color" content="#6d29b5"/>
+    <title>Aplicativo de Tarefas</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link href="#{facesContext.externalContext.requestContextPath}/resources/css/css.css" rel="stylesheet"/>
+</h:head>
+
+<h:body class="text-center">
+    <div class="d-flex h-100 p-3 mx-auto flex-column">
+        <main class="main">
+            <h:form id="tarefaForm" class="input-group" autocomplete="off">
+                <p:hotkey bind="esc"/>
+                <p:remoteCommand name="clearTarefa" update=":tarefaForm" action="#{tarefaController.clearTarefa}"/>
+                <p:defaultCommand target="add"/>
+                <div class="input-group-prepend">
+                    <p:commandLink
+                            id="checkAll"
+                            styleClass="btn btn-default check-all #{tarefaController.allDone ? 'active' : ''}"
+                            update="@this :tarefaList"
+                            action="#{tarefaController.toggleAllStatus}"
+                            process="@this"
+                    >
+                        <span class="material-icons">keyboard_arrow_down</span>
+                    </p:commandLink>
+                </div>
+                <p:inputText
+                        id="tarefaInput"
+                        styleClass="p-3 w-100 rounded"
+                        value="#{tarefaController.tarefa.description}"
+                        maxlength="150"
+                        placeholder="O que precisa ser feito?"
+                        autocomplete="off"
+                        required="true"
+                />
+                <div class="input-group-append">
+                    <p:commandLink
+                            id="add"
+                            class="zeroSize"
+                            update="@form :tarefaList"
+                            action="#{tarefaController.create}"
+                            oncomplete="bindResetInput()"
+                    >
+                    </p:commandLink>
+                </div>
+            </h:form>
+            <p:dataList
+                    id="tarefaList"
+                    var="tarefa"
+                    value="#{tarefaController.tarefas}"
+                    type="unordered"
+                    itemType="none"
+                    emptyMessage=""
+            >
+                <f:facet name="header">
+                    <h:panelGroup
+                            styleClass="empty-list"
+                            layout="block"
+                            rendered="#{!tarefaController.hasTarefas() and tarefaController.tarefaCount > 0}"
+                    >
+                        <i class="material-icons">
+                            inbox
+                        </i>
+                        <h:outputText
+                                styleClass="no-tarefa"
+                                value="Nenhuma tarefa para o filtro especificado"
+
+                        />
+                    </h:panelGroup>
+                </f:facet>
+                <h:panelGroup layout="block" id="tarefaItem" class="tarefa-item">
+                    <h:form layout="block" class="input-group" rendered="#{tarefaController.isEditing(tarefa)}">
+                        <p:remoteCommand
+                                name="cancelEdit"
+                                process="@this"
+                                update=":tarefaList"
+                                action="#{tarefaController.cancelEdit}"
+                        />
+                        <p:defaultCommand target="save"/>
+                        <p:commandLink
+                                class="zeroSize"
+                                update=":tarefaList"
+                                process="@this"
+                                action="#{tarefaController.cancelEdit}"
+                        />
+                        <p:inputText
+                                id="editing"
+                                value="#{tarefaController.selected.description}"
+                                styleClass="tarefa-edit"
+                                autocomplete="off"
+                                required="true"
+                        />
+                        <p:commandLink
+                                class="zeroSize"
+                                id="save"
+                                update=":tarefaList"
+                                action="#{tarefaController.save(tarefa)}"
+                                icon="ui-icon-disk"
+                        />
+
+                    </h:form>
+                    <h:form layout="block" class="input-group" rendered="#{!tarefaController.isEditing(tarefa)}">
+                        <h:selectBooleanCheckbox
+                                styleClass="tarefa-status"
+                                value="#{tarefa.done}"
+                                id="complete"
+                        >
+                            <p:ajax
+                                    event="change"
+                                    listener="#{tarefaController.save(tarefa)}"
+                                    update=":tarefaList :tarefaForm:checkAll"
+
+                            />
+                        </h:selectBooleanCheckbox>
+                        <h:outputLabel class="checkbox" for="complete">
+                            <h:outputText styleClass="box"/>
+                            <h:outputText styleClass="check"/>
+                        </h:outputLabel>
+                        <h:outputLabel
+                                class="tarefa-content"
+                                id="tarefa"
+                        >
+                            <h:outputText value="#{tarefa.description}"/>
+                            <p:ajax
+                                    event="dblclick"
+                                    listener="#{tarefaController.edit(tarefa)}"
+                                    oncomplete="focusFix(jQuery('.tarefa-edit'))"
+                                    update=":tarefaList"
+
+                            />
+                        </h:outputLabel>
+                        <div class="input-group-append">
+                            <p:commandLink
+                                    styleClass="btn remove"
+                                    update=":tarefaList"
+                                    action="#{tarefaController.delete(tarefa)}"
+                            >
+                                <span class="material-icons">close</span>
+                            </p:commandLink>
+                        </div>
+                    </h:form>
+                </h:panelGroup>
+                <f:facet name="footer">
+                    <h:panelGroup
+                            styleClass="toolbar"
+                            layout="block"
+                            rendered="#{tarefaController.tarefaCount > 0}"
+                    >
+                        <div class="tarefa-count">
+                            <h:panelGroup
+                                    layout="block"
+                                    rendered="#{tarefaController.pendingTarefasCount > 1}"
+                            >
+                                <h:outputText value="#{tarefaController.pendingTarefasCount} tarefas pendentes"/>
+                            </h:panelGroup>
+                            <h:panelGroup
+                                    layout="block"
+                                    rendered="#{tarefaController.pendingTarefasCount == 1}"
+                            >
+                                1 tarefa pendente
+                            </h:panelGroup>
+                            <h:panelGroup
+                                    layout="block"
+                                    rendered="#{tarefaController.pendingTarefasCount == 0}"
+                            >
+                                Nenhuma tarefa pendente
+                            </h:panelGroup>
+                        </div>
+                    </h:panelGroup>
+                    <h:form rendered="#{tarefaController.tarefaCount > 0}">
+                        <p:toolbar>
+                            <f:facet name="right">
+                                <p:menuButton value="Filtro">
+                                    <p:menuitem value="Completos"
+                                                action="#{tarefaController.toggleDoneFilter}"
+                                                update=":tarefaList"
+                                                disabled="#{!tarefaController.canFilter(tarefaController.doneFilter)}"/>
+                                    <p:menuitem value="Pendentes"
+                                                action="#{tarefaController.togglePendingFilter}"
+                                                update=":tarefaList"
+                                                disabled="#{!tarefaController.canFilter(tarefaController.pendingFilter)}" />
+                                </p:menuButton>
+                            </f:facet>
+
+                        </p:toolbar>
+                    </h:form>
+                </f:facet>
+            </p:dataList>
+        </main>
+    </div>
+
+    <h:outputScript library="primefaces" name="jquery/jquery.js"/>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="#{facesContext.externalContext.requestContextPath}/resources/js.js"></script>
+</h:body>
+
+</html>

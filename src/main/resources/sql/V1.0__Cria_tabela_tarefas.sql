@@ -1,0 +1,6 @@
+CREATE TABLE tarefa (
+  id serial  NOT NULL,
+  description VARCHAR(150) NOT NULL,
+  ip VARCHAR(32) NOT NULL,
+  done BOOLEAN DEFAULT FALSE NOT NULL
+);
