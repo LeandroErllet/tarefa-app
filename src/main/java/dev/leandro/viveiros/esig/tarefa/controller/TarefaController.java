@@ -102,10 +102,6 @@ public class TarefaController implements Serializable {
         loadData();
     }
 
-    public void edit(Tarefa tarefa) {
-        selected = tarefa;
-    }
-
     public Boolean isEditing(Tarefa tarefa) {
         return selected != null && selected.equals(tarefa);
     }

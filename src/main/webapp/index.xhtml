@@ -132,7 +132,7 @@
                             <h:outputText value="#{tarefa.description}"/>
                             <p:ajax
                                     event="dblclick"
-                                    listener="#{tarefaController.edit(tarefa)}"
+                                    listener="#{tarefaController.setSelected(tarefa)}"
                                     oncomplete="focusFix(jQuery('.tarefa-edit'))"
                                     update=":tarefaList"
 
