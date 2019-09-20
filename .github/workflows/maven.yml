@@ -27,7 +27,7 @@ jobs:
       with:
         java-version: 1.8
     - name: Analysis with Maven
-      run:
-        - wget -q https://github.com/checkstyle/checkstyle/releases/download/checkstyle-8.9/checkstyle-8.9-all.jar
-        - java -jar checkstyle-8.9-all.jar -c ruleset.xml src/main/java
+      run: |
+        wget -q https://github.com/checkstyle/checkstyle/releases/download/checkstyle-8.9/checkstyle-8.9-all.jar
+        java -jar checkstyle-8.9-all.jar -c ruleset.xml src/main/java
 
