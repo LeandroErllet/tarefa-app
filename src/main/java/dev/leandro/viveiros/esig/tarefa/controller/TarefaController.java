@@ -46,13 +46,16 @@ public class TarefaController implements Serializable {
         doneTarefasCount = tarefaService.countDone();
         pendingTarefasCount = tarefaService.countPending();
         tarefaCount = tarefaService.count();
-
-        if (filter == TarefaFilter.PENDING) {
-            tarefas = tarefaService.findPending();
-        } else if (filter == TarefaFilter.DONE) {
-            tarefas = tarefaService.findDone();
-        } else {
-            tarefas = tarefaService.findAll();
+        switch (filter) {
+            case DONE:
+                tarefas = tarefaService.findDone();
+                break;
+            case PENDING:
+                tarefas = tarefaService.findPending();
+                break;
+            default:
+                tarefas = tarefaService.findAll();
+                break;
         }
     }
 
