@@ -17,13 +17,8 @@ public class TarefaAPIController {
     @Autowired
     private TarefaService tarefaService;
 
-    @GetMapping("/tarefas")
+    @GetMapping
     List<Tarefa> all() {
         return tarefaService.findAllWithoutIp();
-    }
-
-    @GetMapping("/filtro/{ip}")
-    List<Tarefa> byIP(@PathVariable String ip) {
-        return tarefaService.findByIp(ip);
     }
 }
