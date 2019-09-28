@@ -40,6 +40,16 @@ public class TarefaServiceImpl implements TarefaService {
     }
 
     @Override
+    public List<Tarefa> findAllWithoutIp() {
+        return tarefaRepository.findAll();
+    }
+
+    @Override
+    public List<Tarefa> findByIp(String ip) {
+        return tarefaRepository.findByIp(ip);
+    }
+
+    @Override
     public List<Tarefa> findDone() {
         return tarefaRepository
                 .findAllByDoneTrue().stream()

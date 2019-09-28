@@ -14,6 +14,8 @@ public interface TarefaRepository extends JpaRepository<Tarefa, Integer> {
 
     List<Tarefa> findAllByDoneTrue();
 
+    List<Tarefa> findByIp(String ip);
+
     List<Tarefa> findAllByDoneFalse();
 
     @Modifying

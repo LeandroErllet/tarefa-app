@@ -11,6 +11,10 @@ public interface TarefaService {
 
     List<Tarefa> findAll();
 
+    List<Tarefa> findAllWithoutIp();
+
+    List<Tarefa> findByIp(String ip);
+
     List<Tarefa> findDone();
 
     List<Tarefa> findPending();
