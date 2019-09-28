@@ -17,13 +17,13 @@ public class TarefaAPIController {
     @Autowired
     private TarefaService tarefaService;
 
-    @GetMapping
+    @GetMapping("/tarefas")
     List<Tarefa> all() {
         return tarefaService.findAllWithoutIp();
     }
 
     @GetMapping("/filtro/{ip}")
-    List<Tarefa> byIP(@PathVariable Long ip) {
-        return tarefaService.findByIp(String.valueOf(ip));
+    List<Tarefa> byIP(@PathVariable String ip) {
+        return tarefaService.findByIp(ip);
     }
 }
