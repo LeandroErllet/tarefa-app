@@ -1,6 +1,12 @@
 ## Aplicativo de tarefas
 Site: https://esig-tarefa-app.herokuapp.com/
 
+## Usando API rest
+
+Acesse o site: https://esig-tarefa-app.herokuapp.com/api
+lá terá um JSON com todas as tarefas você pode usar para qualquer aplicação!
+no caso utilizei um breve exemplo usando telegram: https://t.me/ScarlletTarefaBot, git do bot: https://github.com/LeandroErllet/scarllet-tarefa
+
 ## Tecnológias utilizadas
 
 - Bootstrap 4.3.1
