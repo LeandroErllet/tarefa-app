@@ -21,8 +21,6 @@ public interface TarefaService {
 
     void save(Tarefa tarefa);
 
-    void updateDescription(Integer id, String description);
-
     void delete(Integer id);
 
     long countDone();

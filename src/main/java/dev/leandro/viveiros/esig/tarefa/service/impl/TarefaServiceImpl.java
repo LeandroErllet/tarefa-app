@@ -71,11 +71,6 @@ public class TarefaServiceImpl implements TarefaService {
     }
 
     @Override
-    public void updateDescription(Integer id, String description) {
-        tarefaRepository.updateDescription(id, description);
-    }
-
-    @Override
     public void delete(Integer id) {
         tarefaRepository.deleteById(id);
     }
