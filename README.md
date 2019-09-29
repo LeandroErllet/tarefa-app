@@ -3,9 +3,9 @@ Site: https://esig-tarefa-app.herokuapp.com/
 
 ## Usando API rest
 
-Acesse o site: https://esig-tarefa-app.herokuapp.com/api
+Acesse o site: [acessar a API](https://esig-tarefa-app.herokuapp.com/api)
 lá terá um JSON com todas as tarefas você pode usar para qualquer aplicação!
-no caso utilizei um breve exemplo usando telegram: https://t.me/ScarlletTarefaBot, git do bot: https://github.com/LeandroErllet/scarllet-tarefa
+no caso utilizei um breve exemplo usando telegram: [scarllet Bot](https://t.me/ScarlletTarefaBot), git do bot: [scarllet-tarefa](https://github.com/LeandroErllet/scarllet-tarefa)
 
 ## Tecnológias utilizadas
 
